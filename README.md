@@ -1,4 +1,4 @@
-# sample-scRNAseq 🧬
+# Sample-scRNAseq-Pipeline 🧬
 
 A comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline demonstrating quality control, dimensionality reduction, clustering, cell type annotation, and differential expression analysis using modern Python bioinformatics tools.
 
