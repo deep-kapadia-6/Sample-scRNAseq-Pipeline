@@ -2,9 +2,15 @@
 
 A comprehensive single-cell RNA sequencing (scRNA-seq) analysis pipeline demonstrating quality control, dimensionality reduction, clustering, cell type annotation, and differential expression analysis using modern Python bioinformatics tools.
 
+![Python](https://img.shields.io/badge/python-3.10-blue.svg)
+![Scanpy](https://img.shields.io/badge/Scanpy-1.x-orange.svg)
+![scVI-tools](https://img.shields.io/badge/scVI--tools-0.x-green.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)
+
+
 ## 📋 Overview
 
-This repository contains a complete Jupyter Notebook workflow for analyzing 10X Genomics single-cell RNA sequencing data. The pipeline covers the full analysis workflow from raw count matrices to annotated cell populations with differential gene expression analysis.
+This repository contains a complete Jupyter Notebook workflow for analyzing 10X Genomics single-cell RNA sequencing data. The pipeline covers the full analysis workflow, from raw count matrices to annotated cell populations, including differential gene expression analysis.
 
 **Key Analysis Steps:**
 - Loading and preprocessing 10X Genomics data (barcodes, features, matrix)
@@ -38,18 +44,21 @@ This repository contains a complete Jupyter Notebook workflow for analyzing 10X 
 ### Setup
 
 1. Clone the repository:
-bash
+```bash
 git clone https://github.com/deep-kapadia-6/sample-scRNAseq.git
 cd sample-scRNAseq
+```
 
 2. Create a conda environment (recommended)
-bash
+```bash
 conda create -n scrnaseq python=3.10
 conda activate scrnaseq
+```
 
-4. Install required dependencies:
-bash
+3. Install required dependencies:
+```bash
 pip install -r requirements.txt
+```
 
 The following packages will be installed:
 - anndata - Annotated data structures for single-cell data
@@ -66,8 +75,9 @@ The following packages will be installed:
 ### Running the Analysis
 
 1. Launch Jupyter Notebook:
-bash
+```bash
 jupyter notebook scRNAseq_code.ipynb
+```
 
 2. Prepare your data files:
 Place 10X Genomics output files in the appropriate directory:
@@ -89,19 +99,22 @@ The pipeline expects standard 10X Genomics output:
 ### Customization
 
 Filter Thresholds (Cell 16):
-python
+```python
 sc.pp.filter_cells(rna_adata, min_genes=200)  # Minimum genes per cell
 sc.pp.filter_genes(rna_adata, min_cells=3)    # Minimum cells per gene
 rna_adata = rna_adata[rna_adata.obs.pct_counts_mt < 40, :]  # Mitochondrial content
+```
 
 scVI Model Parameters:
-python
+```python
 model = scvi.model.SCVI(adata)  # Default: n_latent=10, n_hidden=128
 model.train()  # Default: 400 epochs
+```
 
 Clustering Resolution:
-python
+```python
 sc.tl.leiden(adata, resolution=0.5, key_added="leiden_scVI")  # Adjust resolution
+```
 
 ## 📂 Project Structure
 
@@ -194,7 +207,7 @@ Contributions are welcome! Areas for improvement:
 - Add support for multi-sample integration
 - Implement trajectory inference analysis
 - Add RNA velocity analysis
-- Create command-line interface
+- Create a command-line interface
 - Add automated report generation
 - Improve documentation with example datasets
 - Please open an issue or submit a pull request.
